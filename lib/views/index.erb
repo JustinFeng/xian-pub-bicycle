@@ -1,0 +1,21 @@
+<html>
+<head>
+
+</head>
+<body>
+    <form action="/" method="get">
+        <label for="term">Search</label>
+        <input name="term" id="term"/>
+
+        <button type="submit">Go</button>
+    </form>
+    <ul>
+      <% @results.each do |station| %>
+        <li>
+          <p><%= station["sitename"] %> (<%= station["locknum"].to_i - station["emptynum"].to_i %>/<%= station["locknum"] %>)<p>
+          <p><%= station["location"] %><p>
+        </li>
+      <% end %>
+    </ul>
+</body>
+</html>
