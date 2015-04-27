@@ -14,23 +14,23 @@ var AppContainer = React.createClass({displayName: "AppContainer",
     render: function () {
         return (
             React.createElement("div", {className: "appContainer"}, 
-                React.createElement(SearchBar, {onSearch: this.fetchStations}), 
+                React.createElement(ControlPanel, {onFetchStations: this.fetchStations}), 
                 React.createElement(StationList, {data: this.state.data})
             )
         );
     }
 });
 
-var SearchBar = React.createClass({displayName: "SearchBar",
+var ControlPanel = React.createClass({displayName: "ControlPanel",
     handleSearch: function(e) {
         e.preventDefault();
         var term = React.findDOMNode(this.refs.term).value.trim();
-        this.props.onSearch(term);
+        this.props.onFetchStations(term);
     },
     render: function () {
         return (
-            React.createElement("div", {className: "searchBar", onSubmit: this.handleSearch}, 
-                React.createElement("form", {className: "searchForm"}, 
+            React.createElement("div", {className: "controlPanel"}, 
+                React.createElement("form", {className: "searchForm", onSubmit: this.handleSearch}, 
                     React.createElement("input", {type: "text", placeholder: "Street name, landmark and so on", ref: "term"}), 
                     React.createElement("input", {type: "submit", value: "Search"})
                 )

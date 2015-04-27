@@ -14,23 +14,23 @@ var AppContainer = React.createClass({
     render: function () {
         return (
             <div className="appContainer">
-                <SearchBar onSearch={this.fetchStations} />
+                <ControlPanel onFetchStations={this.fetchStations} />
                 <StationList data={this.state.data}/>
             </div>
         );
     }
 });
 
-var SearchBar = React.createClass({
+var ControlPanel = React.createClass({
     handleSearch: function(e) {
         e.preventDefault();
         var term = React.findDOMNode(this.refs.term).value.trim();
-        this.props.onSearch(term);
+        this.props.onFetchStations(term);
     },
     render: function () {
         return (
-            <div className="searchBar" onSubmit={this.handleSearch}>
-                <form className="searchForm">
+            <div className="controlPanel">
+                <form className="searchForm" onSubmit={this.handleSearch}>
                     <input type="text" placeholder="Street name, landmark and so on" ref="term"/>
                     <input type="submit" value="Search"/>
                 </form>
