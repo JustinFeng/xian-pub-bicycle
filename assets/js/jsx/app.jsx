@@ -29,12 +29,12 @@ var ControlPanel = React.createClass({
     },
     render: function () {
         return (
-            <div className="controlPanel">
+            <section className="controlPanel">
                 <form className="searchForm" onSubmit={this.handleSearch}>
                     <input className="searchBox" type="text" placeholder="Street name or Landmark" ref="term"/>
                     <button className="icon-search searchButton" type="submit"/>
                 </form>
-            </div>
+            </section>
         );
     }
 });
@@ -47,9 +47,9 @@ var StationList = React.createClass({
             );
         });
         return (
-            <div className="stationList">
+            <section className="stationList">
                 {stationList}
-            </div>
+            </section>
         );
     }
 });
@@ -59,10 +59,12 @@ var Station = React.createClass({
         var info = this.props.info;
         var title = info.sitename + " (" + (parseInt(info.locknum) - parseInt(info.emptynum)) + "/" + parseInt(info.locknum) + ")";
         return (
-            <div className="station">
-                <p>{title}</p>
-                <p>{this.props.info.location}</p>
-            </div>
+            <article className="station">
+                <section className="info">
+                    <h1>{title}</h1>
+                    <p>{this.props.info.location}</p>
+                </section>
+            </article>
         );
     }
 });

@@ -29,7 +29,7 @@ var ControlPanel = React.createClass({displayName: "ControlPanel",
     },
     render: function () {
         return (
-            React.createElement("div", {className: "controlPanel"}, 
+            React.createElement("section", {className: "controlPanel"}, 
                 React.createElement("form", {className: "searchForm", onSubmit: this.handleSearch}, 
                     React.createElement("input", {className: "searchBox", type: "text", placeholder: "Street name or Landmark", ref: "term"}), 
                     React.createElement("button", {className: "icon-search searchButton", type: "submit"})
@@ -47,7 +47,7 @@ var StationList = React.createClass({displayName: "StationList",
             );
         });
         return (
-            React.createElement("div", {className: "stationList"}, 
+            React.createElement("section", {className: "stationList"}, 
                 stationList
             )
         );
@@ -59,9 +59,11 @@ var Station = React.createClass({displayName: "Station",
         var info = this.props.info;
         var title = info.sitename + " (" + (parseInt(info.locknum) - parseInt(info.emptynum)) + "/" + parseInt(info.locknum) + ")";
         return (
-            React.createElement("div", {className: "station"}, 
-                React.createElement("p", null, title), 
-                React.createElement("p", null, this.props.info.location)
+            React.createElement("article", {className: "station"}, 
+                React.createElement("section", {className: "info"}, 
+                    React.createElement("h1", null, title), 
+                    React.createElement("p", null, this.props.info.location)
+                )
             )
         );
     }
