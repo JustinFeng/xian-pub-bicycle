@@ -1,4 +1,8 @@
 require 'httparty'
+require 'openssl'
+require 'geokit'
+
+Geokit::default_units = :meters
 
 class DataRepository
   WS_URL = 'http://www.xazxc.com/service/IBikeSitesService?wsdl/findBikeSites'
@@ -12,6 +16,18 @@ class DataRepository
     data.select do |station|
       station["location"].include?(term) || station["sitename"].include?(term)
     end
+  end
+
+  def self.search_by_location lat, lng, distance
+    user_loc = Geokit::LatLng.new(lat, lng)
+    data.map { |station|
+      station_loc = Geokit::LatLng.new(station["latitude"], station["longitude"])
+      station.tap {|it| it["distance"] = user_loc.distance_to(station_loc) }
+    }.select { |station|
+      station["distance"] <= distance
+    }.sort {|x,y|
+      x["distance"] <=> y["distance"]
+    }
   end
 
   private

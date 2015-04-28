@@ -28,7 +28,12 @@ class App < Sinatra::Base
   }
 
   get '/api' do
-    DataRepository.search_by_term(params[:query]).to_json
+    query = JSON.parse(params[:query])
+    if (query["lat"] && query["lng"])
+      DataRepository.search_by_location(query["lat"], query["lng"], query["distance"] || 1000).to_json
+    else
+      DataRepository.search_by_term(query["term"]).to_json
+    end
   end
 
   get '/' do
