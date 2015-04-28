@@ -1,7 +1,7 @@
 var AppContainer = React.createClass({
-    fetchStations: function(term) {
+    fetchStations: function(query) {
         $.ajax({
-            url: '/api?query=' + term,
+            url: '/api?query=' + encodeURI(JSON.stringify(query)),
             dataType: 'json',
             success: function(data) {
                 this.setState({data: data});
@@ -25,7 +25,7 @@ var ControlPanel = React.createClass({
     handleSearch: function(e) {
         e.preventDefault();
         var term = React.findDOMNode(this.refs.term).value.trim();
-        this.props.onFetchStations(term);
+        this.props.onFetchStations({"term":term});
     },
     render: function () {
         return (
