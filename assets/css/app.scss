@@ -1,6 +1,29 @@
-label,
-p,
-button,
-input {
-  font-size: 40px;
+.appContainer {
+  .controlPanel {
+    height: 40px;
+
+    .searchBox {
+      float: left;
+      height: 100%;
+      width: 80%;
+      border: 2px solid #999;
+      border-right: 0px;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      padding-left: 10px;
+      font-size: 20px;
+    }
+
+    .searchButton {
+      height: 100%;
+      width: 20%;
+      float: left;
+      border: 2px solid #999;
+      border-left: 0px;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      padding: 0 10px;
+      font-size: 20px;
+    }
+  }
 }

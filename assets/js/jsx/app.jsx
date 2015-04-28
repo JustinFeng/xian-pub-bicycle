@@ -31,8 +31,8 @@ var ControlPanel = React.createClass({
         return (
             <div className="controlPanel">
                 <form className="searchForm" onSubmit={this.handleSearch}>
-                    <input type="text" placeholder="Street name, landmark and so on" ref="term"/>
-                    <input type="submit" value="Search"/>
+                    <input className="searchBox" type="text" placeholder="Street name or Landmark" ref="term"/>
+                    <button className="icon-search searchButton" type="submit"/>
                 </form>
             </div>
         );
