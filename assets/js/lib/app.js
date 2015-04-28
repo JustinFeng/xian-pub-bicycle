@@ -56,9 +56,11 @@ var StationList = React.createClass({displayName: "StationList",
 
 var Station = React.createClass({displayName: "Station",
     render: function () {
+        var info = this.props.info;
+        var title = info.sitename + " (" + (parseInt(info.locknum) - parseInt(info.emptynum)) + "/" + parseInt(info.locknum) + ")";
         return (
             React.createElement("div", {className: "station"}, 
-                React.createElement("p", null, this.props.info.sitename), 
+                React.createElement("p", null, title), 
                 React.createElement("p", null, this.props.info.location)
             )
         );
