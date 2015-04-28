@@ -27,13 +27,19 @@ var ControlPanel = React.createClass({displayName: "ControlPanel",
         var term = React.findDOMNode(this.refs.term).value.trim();
         this.props.onFetchStations({"term":term});
     },
+    locationSearch: function(e) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+           this.props.onFetchStations({"lat": position.coords.latitude, "lng": position.coords.longitude});
+        }.bind(this));
+    },
     render: function () {
         return (
             React.createElement("section", {className: "controlPanel"}, 
                 React.createElement("form", {className: "searchForm", onSubmit: this.handleSearch}, 
                     React.createElement("input", {className: "searchBox", type: "text", placeholder: "Street name or Landmark", ref: "term"}), 
                     React.createElement("button", {className: "icon-search searchButton", type: "submit"})
-                )
+                ), 
+                React.createElement("button", {className: "icon-location locationButton", onClick: this.locationSearch})
             )
         );
     }
@@ -58,6 +64,9 @@ var Station = React.createClass({displayName: "Station",
     render: function () {
         var info = this.props.info;
         var title = info.sitename + " (" + (parseInt(info.locknum) - parseInt(info.emptynum)) + "/" + parseInt(info.locknum) + ")";
+        if (info.distance !== undefined) {
+            title = title + " - " + Math.round(info.distance) + "m";
+        }
         return (
             React.createElement("article", {className: "station"}, 
                 React.createElement("section", {className: "info"}, 

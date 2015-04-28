@@ -27,6 +27,11 @@ var ControlPanel = React.createClass({
         var term = React.findDOMNode(this.refs.term).value.trim();
         this.props.onFetchStations({"term":term});
     },
+    locationSearch: function(e) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+           this.props.onFetchStations({"lat": position.coords.latitude, "lng": position.coords.longitude});
+        }.bind(this));
+    },
     render: function () {
         return (
             <section className="controlPanel">
@@ -34,6 +39,7 @@ var ControlPanel = React.createClass({
                     <input className="searchBox" type="text" placeholder="Street name or Landmark" ref="term"/>
                     <button className="icon-search searchButton" type="submit"/>
                 </form>
+                <button className="icon-location locationButton" onClick={this.locationSearch}/>
             </section>
         );
     }
@@ -58,6 +64,9 @@ var Station = React.createClass({
     render: function () {
         var info = this.props.info;
         var title = info.sitename + " (" + (parseInt(info.locknum) - parseInt(info.emptynum)) + "/" + parseInt(info.locknum) + ")";
+        if (info.distance !== undefined) {
+            title = title + " - " + Math.round(info.distance) + "m";
+        }
         return (
             <article className="station">
                 <section className="info">
