@@ -18,11 +18,17 @@ class DataRepository
 
   def self.search_by_location lat, lng, distance
     user_loc = Geokit::LatLng.new(lat, lng)
-    data.map { |station|
+    a = data.reduce([]) { |nearby_set, station|
       station_loc = Geokit::LatLng.new(station["latitude"], station["longitude"])
-      station.tap {|it| it["distance"] = user_loc.distance_to(station_loc) }
-    }.select { |station|
-      station["distance"] <= distance
+      site_distance = user_loc.distance_to(station_loc)
+
+      if site_distance <= distance
+        nearby_station = station.dup
+        nearby_station["distance"] = site_distance
+        nearby_set << nearby_station
+      end
+
+      nearby_set
     }.sort {|x,y|
       x["distance"] <=> y["distance"]
     }
