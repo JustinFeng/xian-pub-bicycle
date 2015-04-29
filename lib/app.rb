@@ -28,11 +28,16 @@ class App < Sinatra::Base
   }
 
   get '/api' do
-    query = JSON.parse(params[:query])
+    begin
+      query = JSON.parse(params[:query])
+    rescue
+      halt 400, "Bad query params: #{params[:query]}"
+    end
+
     if (query["lat"] && query["lng"])
       DataRepository.search_by_location(query["lat"], query["lng"], query["distance"] || 1000).to_json
     else
-      DataRepository.search_by_term(query["term"]).to_json
+      DataRepository.search_by_term(query["term"] || '').to_json
     end
   end
 
