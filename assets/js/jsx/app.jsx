@@ -22,7 +22,7 @@ var AppContainer = React.createClass({
 });
 
 var ControlPanel = React.createClass({
-    handleSearch: function(e) {
+    keywordSearch: function(e) {
         e.preventDefault();
         var term = React.findDOMNode(this.refs.term).value.trim();
         this.props.onFetchStations({"term":term});
@@ -32,14 +32,18 @@ var ControlPanel = React.createClass({
            this.props.onFetchStations({"lat": position.coords.latitude, "lng": position.coords.longitude});
         }.bind(this));
     },
+    idsSearch: function(e) {
+        this.props.onFetchStations({"ids": localStorage["bookmarks"]});
+    },
     render: function () {
         return (
             <section className="controlPanel">
-                <form className="searchForm" onSubmit={this.handleSearch}>
+                <form className="searchForm" onSubmit={this.keywordSearch}>
                     <input className="searchBox" type="text" placeholder="Street name or Landmark" ref="term"/>
                     <button className="icon-search searchButton" type="submit"/>
                 </form>
                 <button className="icon-location locationButton" onClick={this.locationSearch}/>
+                <button className="icon-star-1 bookmarkButton" onClick={this.idsSearch}/>
             </section>
         );
     }

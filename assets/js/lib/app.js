@@ -22,7 +22,7 @@ var AppContainer = React.createClass({displayName: "AppContainer",
 });
 
 var ControlPanel = React.createClass({displayName: "ControlPanel",
-    handleSearch: function(e) {
+    keywordSearch: function(e) {
         e.preventDefault();
         var term = React.findDOMNode(this.refs.term).value.trim();
         this.props.onFetchStations({"term":term});
@@ -32,14 +32,18 @@ var ControlPanel = React.createClass({displayName: "ControlPanel",
            this.props.onFetchStations({"lat": position.coords.latitude, "lng": position.coords.longitude});
         }.bind(this));
     },
+    idsSearch: function(e) {
+        this.props.onFetchStations({"ids": localStorage["bookmarks"]});
+    },
     render: function () {
         return (
             React.createElement("section", {className: "controlPanel"}, 
-                React.createElement("form", {className: "searchForm", onSubmit: this.handleSearch}, 
+                React.createElement("form", {className: "searchForm", onSubmit: this.keywordSearch}, 
                     React.createElement("input", {className: "searchBox", type: "text", placeholder: "Street name or Landmark", ref: "term"}), 
                     React.createElement("button", {className: "icon-search searchButton", type: "submit"})
                 ), 
-                React.createElement("button", {className: "icon-location locationButton", onClick: this.locationSearch})
+                React.createElement("button", {className: "icon-location locationButton", onClick: this.locationSearch}), 
+                React.createElement("button", {className: "icon-star-1 bookmarkButton", onClick: this.idsSearch})
             )
         );
     }
