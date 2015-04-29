@@ -4,7 +4,7 @@ Xi'an Public Bicycle Data API
 
 ## API doc
 
-API is serving at http://xian-pub-bicycle.herokuapp.com/api?query=\<QUERY_JSON\>, it supports 
+API is serving at http://xian-pub-bicycle.herokuapp.com/api?query=QUERY_JSON, it supports 
 3 ways to query public bicycle station information
 
 ### Search by keyword
@@ -13,7 +13,7 @@ Search with keyword, api will return station whose sitename or location contains
 
 **REQUEST:**
 
-GET http://xian-pub-bicycle.herokuapp.com/api?query={ "term": \<ANY_STRING\> }
+GET http://xian-pub-bicycle.herokuapp.com/api?query={"term":ANY_STRING}
 
 **RESPONSE:**
 
@@ -39,7 +39,7 @@ as default.
 
 **REQUEST:**
 
-GET http://xian-pub-bicycle.herokuapp.com/api?query={ "lat": \<DECIMAL_FLOAT\>, "lng": \<DECIMAL_FLOAT\>, "distance": \<DECIMAL_FLOAT\> }
+GET http://xian-pub-bicycle.herokuapp.com/api?query={"lat":DECIMAL_FLOAT,"lng":DECIMAL_FLOAT,"distance":DECIMAL_FLOAT}
 
 **RESPONSE:**
 
@@ -67,7 +67,7 @@ Search with siteid, which can be found in previous response, accepts multiple id
 
 **REQUEST:**
 
-GET http://xian-pub-bicycle.herokuapp.com/api?query={ "ids": [\<ID_LIST\>] }
+GET http://xian-pub-bicycle.herokuapp.com/api?query={"ids":[ID_LIST]}
 
 **RESPONSE:**
 
