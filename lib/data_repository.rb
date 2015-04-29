@@ -13,9 +13,7 @@ class DataRepository
   @@cached_at = Time.now
 
   def self.search_by_term term
-    data.select do |station|
-      station["location"].include?(term) || station["sitename"].include?(term)
-    end
+    data.select { |station| station["location"].include?(term) || station["sitename"].include?(term) }
   end
 
   def self.search_by_location lat, lng, distance
@@ -28,6 +26,10 @@ class DataRepository
     }.sort {|x,y|
       x["distance"] <=> y["distance"]
     }
+  end
+
+  def self.search_by_ids(ids)
+    data.select { |station| ids.include? station["siteid"] }
   end
 
   private

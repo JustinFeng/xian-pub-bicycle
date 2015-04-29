@@ -34,10 +34,14 @@ class App < Sinatra::Base
       halt 400, "Bad query params: #{params[:query]}"
     end
 
-    if (query["lat"] && query["lng"])
+    if query["ids"]
+      DataRepository.search_by_ids(query["ids"]).to_json
+    elsif query["lat"] && query["lng"]
       DataRepository.search_by_location(query["lat"], query["lng"], query["distance"] || 1000).to_json
+    elsif query["term"]
+      DataRepository.search_by_term(query["term"]).to_json
     else
-      DataRepository.search_by_term(query["term"] || '').to_json
+      [].to_json
     end
   end
 
