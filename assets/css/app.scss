@@ -53,6 +53,23 @@
   .stationList {
     .station {
       border-bottom: 1px solid #ccc;
+      position: relative;
+
+      .info {
+        display: inline-block;
+      }
+
+      .action {
+        display: inline-block;
+        position: absolute;
+        right: 0;
+
+        .bookmark {
+          height: 50%;
+          padding-top: 20px;
+          font-size: 20px;
+        }
+      }
     }
   }
 }
