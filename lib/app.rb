@@ -29,6 +29,7 @@ class App < Sinatra::Base
 
   get '/api' do
     begin
+      headers 'Access-Control-Allow-Origin' => "*"
       query = JSON.parse(params[:query])
     rescue
       halt 400, "Bad query params: #{params[:query]}"
