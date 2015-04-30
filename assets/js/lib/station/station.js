@@ -38,6 +38,9 @@ var Station = React.createClass({displayName: "Station",
                     React.createElement("p", null, this.props.info.location)
                 ), 
                 React.createElement("section", {className: "action"}, 
+                    React.createElement("div", {className: "navi"}, 
+                        React.createElement("a", {className: "icon-direction", href: "#"})
+                    ), 
                     React.createElement("button", {className: classes, onClick: this.bookmark})
                 )
             )

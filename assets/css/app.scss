@@ -100,17 +100,44 @@ $light: #ddd;
         height: 100%;
         float: left;
         font-size: $font-size;
-        padding: 0 16px;
+
+        h1, p {
+          margin-left: 16px;
+          margin-right: 16px;
+        }
       }
 
       .action {
         display: inline-block;
-        width: 15%;
+        width: 30%;
         height: 100%;
         float: right;
 
+        .navi {
+          display: inline-block;
+          vertical-align: middle;
+          width: 50%;
+          height: 100%;
+          font-size: inherit;
+          border: 0;
+          background: none;
+
+          a {
+            display: block;
+            padding: 45px 53px;
+            color: inherit;
+            text-decoration: none;
+
+            &:hover {
+              cursor: default;
+              background: $light;
+            }
+          }
+        }
+
         .bookmark {
-          width: 100%;
+          display: inline-block;
+          width: 50%;
           height: 100%;
           font-size: inherit;
           border: 0;
@@ -118,6 +145,10 @@ $light: #ddd;
 
           &:focus {
             outline: none;
+          }
+
+          &:hover {
+            background: $light;
           }
         }
       }
@@ -168,10 +199,27 @@ $light: #ddd;
 
         .info {
           font-size: $font-size;
-          padding: 0 30px;
 
           h1, p {
-            margin: 28px 0;
+            margin: 28px 30px;
+          }
+        }
+
+        .action {
+          .navi {
+            a {
+              padding: 68px 42px;
+
+              &:hover {
+                background: none;
+              }
+            }
+          }
+
+          .bookmark {
+            &:hover {
+              background: none;
+            }
           }
         }
       }
