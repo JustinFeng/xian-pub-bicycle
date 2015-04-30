@@ -3,6 +3,8 @@ $font-size: 16px;
 $panel-height: 40px;
 $radius: 20px;
 $station-height: 110px;
+$dark: #999;
+$light: #ddd;
 
 .appContainer {
   width: 900px;
@@ -16,7 +18,7 @@ $station-height: 110px;
       float: left;
       height: 100%;
       width: 55%;
-      border: 2px solid #999;
+      border: 2px solid $dark;
       border-right: 0px;
       border-top-left-radius: $radius;
       border-bottom-left-radius: $radius;
@@ -32,14 +34,18 @@ $station-height: 110px;
       height: 100%;
       width: 15%;
       float: left;
-      border: 2px solid #999;
-      border-left: 0px;
+      border: 2px solid $dark;
       border-top-right-radius: $radius;
       border-bottom-right-radius: $radius;
       font-size: inherit;
 
       &:focus {
         outline: none;
+      }
+
+      &:active {
+        background: $light;
+        color: $dark;
       }
     }
 
@@ -48,12 +54,17 @@ $station-height: 110px;
       width: 15%;
       border-top-left-radius: $radius;
       border-bottom-left-radius: $radius;
-      border: 2px solid #999;
-      border-right: 1px solid #999;
+      border: 2px solid $dark;
+      border-right: 1px solid $dark;
       font-size: inherit;
 
       &:focus {
         outline: none;
+      }
+
+      &:active {
+        background: $light;
+        color: $dark;
       }
     }
 
@@ -62,19 +73,24 @@ $station-height: 110px;
       width: 15%;
       border-top-right-radius: $radius;
       border-bottom-right-radius: $radius;
-      border: 2px solid #999;
-      border-left: 1px solid #999;
+      border: 2px solid $dark;
+      border-left: 1px solid $dark;
       font-size: inherit;
 
       &:focus {
         outline: none;
+      }
+
+      &:active {
+        background: $light;
+        color: $dark;
       }
     }
   }
 
   .stationList {
     .station {
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid $light;
       position: relative;
       height: $station-height;
 
