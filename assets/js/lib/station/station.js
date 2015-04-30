@@ -1,8 +1,14 @@
 var Station = React.createClass({displayName: "Station",
     bookmark: function(e) {
-        $(e.target).toggleClass("icon-star-1");
-        $(e.target).toggleClass("icon-star-empty");
-
+        this.updateBookmarks();
+        this.setState({isSaved: !this.state.isSaved});
+    },
+    getInitialState: function() {
+        return {
+            isSaved: $.inArray(this.props.info.siteid, JSON.parse(localStorage["bookmarks"])) >= 0
+        };
+    },
+    updateBookmarks: function() {
         var siteid = this.props.info.siteid;
         var ids = JSON.parse(localStorage["bookmarks"]);
         var pos = $.inArray(siteid, ids);
@@ -10,13 +16,10 @@ var Station = React.createClass({displayName: "Station",
         if(pos >= 0) {
             ids.splice(pos, 1);
         } else {
-            ids.push(siteid)
+            ids.push(siteid);
         }
 
         localStorage["bookmarks"] = JSON.stringify(ids);
-    },
-    isSaved: function() {
-        return $.inArray(this.props.info.siteid, JSON.parse(localStorage["bookmarks"])) >= 0;
     },
     render: function () {
         var info = this.props.info;
@@ -25,8 +28,9 @@ var Station = React.createClass({displayName: "Station",
             title = title + " - " + Math.round(info.distance) + "m";
         }
 
-        var statusModifier = this.isSaved() ? "icon-star-1" : "icon-star-empty";
+        var statusModifier = this.state.isSaved ? "icon-star-1" : "icon-star-empty";
         var classes = React.addons.classSet('bookmark', statusModifier);
+
         return (
             React.createElement("article", {className: "station"}, 
                 React.createElement("section", {className: "info"}, 
