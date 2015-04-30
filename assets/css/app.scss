@@ -1,17 +1,27 @@
+$icon-size: 20px;
+$font-size: 16px;
+$panel-height: 40px;
+$radius: 20px;
+$station-height: 110px;
+
 .appContainer {
+  width: 900px;
+  margin: auto;
+  font-size: $icon-size;
+
   .controlPanel {
-    height: 40px;
+    height: $panel-height;
 
     .searchBox {
       float: left;
       height: 100%;
-      width: 70%;
+      width: 55%;
       border: 2px solid #999;
       border-right: 0px;
-      border-top-left-radius: 20px;
-      border-bottom-left-radius: 20px;
+      border-top-left-radius: $radius;
+      border-bottom-left-radius: $radius;
       padding-left: 16px;
-      font-size: 18px;
+      font-size: $font-size;
 
       &:focus {
         outline: none;
@@ -20,13 +30,13 @@
 
     .searchButton {
       height: 100%;
-      width: 10%;
+      width: 15%;
       float: left;
       border: 2px solid #999;
       border-left: 0px;
-      border-top-right-radius: 20px;
-      border-bottom-right-radius: 20px;
-      font-size: 18px;
+      border-top-right-radius: $radius;
+      border-bottom-right-radius: $radius;
+      font-size: inherit;
 
       &:focus {
         outline: none;
@@ -34,13 +44,13 @@
     }
 
     .locationButton {
-      height: 40px;
-      width: 10%;
-      border-top-left-radius: 20px;
-      border-bottom-left-radius: 20px;
+      height: 100%;
+      width: 15%;
+      border-top-left-radius: $radius;
+      border-bottom-left-radius: $radius;
       border: 2px solid #999;
       border-right: 1px solid #999;
-      font-size: 18px;
+      font-size: inherit;
 
       &:focus {
         outline: none;
@@ -48,13 +58,13 @@
     }
 
     .bookmarkButton {
-      height: 40px;
-      width: 10%;
-      border-top-right-radius: 20px;
-      border-bottom-right-radius: 20px;
+      height: 100%;
+      width: 15%;
+      border-top-right-radius: $radius;
+      border-bottom-right-radius: $radius;
       border: 2px solid #999;
       border-left: 1px solid #999;
-      font-size: 18px;
+      font-size: inherit;
 
       &:focus {
         outline: none;
@@ -64,32 +74,88 @@
 
   .stationList {
     .station {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #ddd;
       position: relative;
-      height: 110px;
+      height: $station-height;
 
       .info {
         display: inline-block;
-        width: 80%;
+        width: 70%;
         height: 100%;
         float: left;
+        font-size: $font-size;
+        padding: 0 16px;
       }
 
       .action {
         display: inline-block;
-        width: 10%;
+        width: 15%;
         height: 100%;
         float: right;
 
         .bookmark {
           width: 100%;
           height: 100%;
-          font-size: 20px;
+          font-size: inherit;
           border: 0;
           background: none;
 
           &:focus {
             outline: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-device-width: 640px) and (-webkit-min-device-pixel-ratio: 2) {
+  $icon-size: 40px;
+  $font-size: 32px;
+  $panel-height: 80px;
+  $radius: 40px;
+  $station-height: 180px;
+
+  .appContainer {
+    width: 100%;
+    font-size: $icon-size;
+
+    .controlPanel {
+      height: $panel-height;
+
+      .searchBox {
+        font-size: $font-size;
+        border-top-left-radius: $radius;
+        border-bottom-left-radius: $radius;
+        padding-left: 30px;
+      }
+
+      .searchButton {
+        border-top-right-radius: $radius;
+        border-bottom-right-radius: $radius;
+      }
+
+      .locationButton {
+        border-top-left-radius: $radius;
+        border-bottom-left-radius: $radius;
+      }
+
+      .bookmarkButton {
+        border-top-right-radius: $radius;
+        border-bottom-right-radius: $radius;
+      }
+    }
+
+    .stationList {
+      .station {
+        height: $station-height;
+
+        .info {
+          font-size: $font-size;
+          padding: 0 30px;
+
+          h1, p {
+            margin: 28px 0;
           }
         }
       }
