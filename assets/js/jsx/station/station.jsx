@@ -31,6 +31,8 @@ var Station = React.createClass({
         var statusModifier = this.state.isSaved ? "icon-star-1" : "icon-star-empty";
         var classes = React.addons.classSet('bookmark', statusModifier);
 
+        var naviLink = "http://api.map.baidu.com/marker?location=" + info.latitude + "," + info.longitude +"&title=" + encodeURI(title) + "&content=" + encodeURI(info.location) + "&output=html&src=xian-pub-bicycle";
+
         return (
             <article className="station">
                 <section className="info">
@@ -39,7 +41,7 @@ var Station = React.createClass({
                 </section>
                 <section className="action">
                     <div className="navi">
-                        <a className="icon-direction" href="#"/>
+                        <a className="icon-direction" href={naviLink}/>
                     </div>
                     <button className={classes} onClick={this.bookmark}/>
                 </section>

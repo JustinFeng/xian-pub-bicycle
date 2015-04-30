@@ -31,6 +31,8 @@ var Station = React.createClass({displayName: "Station",
         var statusModifier = this.state.isSaved ? "icon-star-1" : "icon-star-empty";
         var classes = React.addons.classSet('bookmark', statusModifier);
 
+        var naviLink = "http://api.map.baidu.com/marker?location=" + info.latitude + "," + info.longitude +"&title=" + encodeURI(title) + "&content=" + encodeURI(info.location) + "&output=html&src=xian-pub-bicycle";
+
         return (
             React.createElement("article", {className: "station"}, 
                 React.createElement("section", {className: "info"}, 
@@ -39,7 +41,7 @@ var Station = React.createClass({displayName: "Station",
                 ), 
                 React.createElement("section", {className: "action"}, 
                     React.createElement("div", {className: "navi"}, 
-                        React.createElement("a", {className: "icon-direction", href: "#"})
+                        React.createElement("a", {className: "icon-direction", href: naviLink})
                     ), 
                     React.createElement("button", {className: classes, onClick: this.bookmark})
                 )

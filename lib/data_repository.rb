@@ -49,15 +49,6 @@ class DataRepository
     p 'Fetching...'
     response = HTTParty.post(WS_URL, body: SOAP_REQUEST_XML)
     @@data  = JSON.parse(response.body.scan(/.*\<ns1:out\>(.*)\<\/ns1:out\>.*/)[0][0])
-    adjust_geocode
     @@cached_at = Time.now
-  end
-
-  def self.adjust_geocode
-    @@data.map! do |station|
-      station["latitude"] = (station["latitude"].to_f - 0.004696).to_s
-      station["longitude"] = (station["longitude"].to_f - 0.008).to_s
-      station
-    end
   end
 end
