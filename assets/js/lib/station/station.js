@@ -38,7 +38,7 @@ var Station = React.createClass({displayName: "Station",
                     React.createElement("p", null, this.props.info.location)
                 ), 
                 React.createElement("section", {className: "action"}, 
-                    React.createElement("div", {className: classes, onClick: this.bookmark})
+                    React.createElement("button", {className: classes, onClick: this.bookmark})
                 )
             )
         );

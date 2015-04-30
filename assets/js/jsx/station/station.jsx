@@ -38,7 +38,7 @@ var Station = React.createClass({
                     <p>{this.props.info.location}</p>
                 </section>
                 <section className="action">
-                    <div className={classes} onClick={this.bookmark}/>
+                    <button className={classes} onClick={this.bookmark}/>
                 </section>
             </article>
         );
