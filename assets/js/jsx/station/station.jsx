@@ -24,6 +24,7 @@ var Station = React.createClass({
     render: function () {
         var info = this.props.info;
         var title = info.sitename + " (" + (parseInt(info.locknum) - parseInt(info.emptynum)) + "/" + parseInt(info.locknum) + ")";
+        var titleOnMap = title;
         if (info.distance !== undefined) {
             title = title + " - " + Math.round(info.distance) + "m";
         }
@@ -31,7 +32,7 @@ var Station = React.createClass({
         var statusModifier = this.state.isSaved ? "icon-star-1" : "icon-star-empty";
         var classes = React.addons.classSet('bookmark', statusModifier);
 
-        var naviLink = "http://api.map.baidu.com/marker?location=" + info.latitude + "," + info.longitude +"&title=" + encodeURI(title) + "&content=" + encodeURI(info.location) + "&output=html&src=xian-pub-bicycle";
+        var naviLink = "http://api.map.baidu.com/marker?location=" + info.latitude + "," + info.longitude +"&title=" + encodeURI(titleOnMap) + "&content=" + encodeURI(info.location) + "&output=html&src=xian-pub-bicycle";
 
         return (
             <article className="station">
