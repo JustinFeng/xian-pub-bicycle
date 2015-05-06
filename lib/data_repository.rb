@@ -9,6 +9,10 @@ class DataRepository
 
   SOAP_REQUEST_XML = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:q0="http://ws.itcast.cn/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> <soapenv:Body> <q0:findBikeSites></q0:findBikeSites></soapenv:Body> </soapenv:Envelope>'
 
+  BAIDU_GEO_API = 'http://api.map.baidu.com/geoconv/v1/'
+
+  BAIDU_AK = 'OKYmQIaqUsXLGsTkpoDyBB9g'
+
   @@data = nil
   @@cached_at = Time.now
 
@@ -16,9 +20,10 @@ class DataRepository
     data.select { |station| station["location"].include?(term) || station["sitename"].include?(term) }
   end
 
-  def self.search_by_location lat, lng, distance
+  def self.search_by_location gps_lat, gps_lng, distance
+    lat, lng = to_baidu_coordinate gps_lat, gps_lng
     user_loc = Geokit::LatLng.new(lat, lng)
-    a = data.reduce([]) { |nearby_set, station|
+    data.reduce([]) { |nearby_set, station|
       station_loc = Geokit::LatLng.new(station["latitude"], station["longitude"])
       site_distance = user_loc.distance_to(station_loc)
 
@@ -50,5 +55,12 @@ class DataRepository
     response = HTTParty.post(WS_URL, body: SOAP_REQUEST_XML)
     @@data  = JSON.parse(response.body.scan(/.*\<ns1:out\>(.*)\<\/ns1:out\>.*/)[0][0])
     @@cached_at = Time.now
+  end
+
+  def self.to_baidu_coordinate lat, lng
+    response = HTTParty.get("#{BAIDU_GEO_API}?coords=#{lng},#{lat}&ak=#{BAIDU_AK}")
+    result = JSON.parse(response.body)
+
+    return result['result'][0]['y'], result['result'][0]['x']
   end
 end
