@@ -17,12 +17,13 @@ $light: #ddd;
     .searchBox {
       float: left;
       height: 100%;
-      width: 55%;
+      width: 52%;
       border: 2px solid $dark;
       border-right: 0px;
       border-top-left-radius: $radius;
       border-bottom-left-radius: $radius;
       padding-left: 16px;
+      margin-left: 1%;
       font-size: $font-size;
 
       &:focus {
@@ -38,6 +39,12 @@ $light: #ddd;
       border-top-right-radius: $radius;
       border-bottom-right-radius: $radius;
       font-size: inherit;
+      color: white;
+      margin-right: 1%;
+
+      &.active {
+        color: black;
+      }
 
       &:focus {
         outline: none;
@@ -45,7 +52,7 @@ $light: #ddd;
 
       &:active {
         background: $light;
-        color: $dark;
+        color: black;
       }
     }
 
@@ -57,6 +64,11 @@ $light: #ddd;
       border: 2px solid $dark;
       border-right: 1px solid $dark;
       font-size: inherit;
+      color: white;
+
+      &.active {
+        color: lawngreen;
+      }
 
       &:focus {
         outline: none;
@@ -64,7 +76,7 @@ $light: #ddd;
 
       &:active {
         background: $light;
-        color: $dark;
+        color: lawngreen;
       }
     }
 
@@ -76,6 +88,12 @@ $light: #ddd;
       border: 2px solid $dark;
       border-left: 1px solid $dark;
       font-size: inherit;
+      color: white;
+      margin-right: 1%;
+
+      &.active {
+        color: gold;
+      }
 
       &:focus {
         outline: none;
@@ -83,7 +101,7 @@ $light: #ddd;
 
       &:active {
         background: $light;
-        color: $dark;
+        color: gold;
       }
     }
   }
@@ -96,10 +114,12 @@ $light: #ddd;
 
       .info {
         display: inline-block;
-        width: 70%;
+        width: 67%;
         height: 100%;
         float: left;
         font-size: $font-size;
+        margin-left: 1%;
+        margin-right: 1%;
 
         h1, p {
           margin-left: 16px;
@@ -112,6 +132,7 @@ $light: #ddd;
         width: 30%;
         height: 100%;
         float: right;
+        margin-right: 1%;
 
         .navi {
           display: inline-block;
@@ -121,6 +142,7 @@ $light: #ddd;
           font-size: inherit;
           border: 0;
           background: none;
+          color: lawngreen;
 
           a {
             display: block;
@@ -142,6 +164,7 @@ $light: #ddd;
           font-size: inherit;
           border: 0;
           background: none;
+          color: gold;
 
           &:focus {
             outline: none;
@@ -201,7 +224,7 @@ $light: #ddd;
           font-size: $font-size;
 
           h1, p {
-            margin: 28px 30px;
+            margin: 22px 30px;
           }
         }
 

@@ -5,10 +5,13 @@ var SearchForm = React.createClass({
         this.props.onFetchStations({"term":term});
     },
     render: function () {
+        var status = this.props.active ? 'active' : '';
+        var classes = React.addons.classSet('icon-search', 'searchButton', status);
+
         return (
             <form className="searchForm" onSubmit={this.keywordSearch}>
                 <input className="searchBox" type="text" placeholder="Street name or Landmark" ref="term"/>
-                <button className="icon-search searchButton" type="submit"/>
+                <button className={classes} type="submit"/>
             </form>
         );
     }

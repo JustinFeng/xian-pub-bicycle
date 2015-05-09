@@ -3,8 +3,11 @@ var BookmarkButton = React.createClass({displayName: "BookmarkButton",
         this.props.onFetchStations({"ids": localStorage["bookmarks"]});
     },
     render: function () {
+        var status = this.props.active ? 'active' : '';
+        var classes = React.addons.classSet('icon-star-1', 'bookmarkButton', status);
+
         return (
-            React.createElement("button", {className: "icon-star-1 bookmarkButton", onClick: this.idsSearch})
+            React.createElement("button", {className: classes, onClick: this.idsSearch})
         );
     }
 });

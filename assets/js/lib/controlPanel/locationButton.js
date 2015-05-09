@@ -5,8 +5,11 @@ var LocationButton = React.createClass({displayName: "LocationButton",
         }.bind(this));
     },
     render: function () {
+        var status = this.props.active ? 'active' : '';
+        var classes = React.addons.classSet('icon-location', 'locationButton', status);
+
         return (
-            React.createElement("button", {className: "icon-location locationButton", onClick: this.locationSearch})
+            React.createElement("button", {className: classes, onClick: this.locationSearch})
         );
     }
 });
