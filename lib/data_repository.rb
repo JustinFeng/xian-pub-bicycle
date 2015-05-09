@@ -46,7 +46,7 @@ class DataRepository
   private
 
   def self.data
-    fetch if (@@data.nil? || Time.now - @@cached_at > 600)
+    fetch if (@@data.nil? || Time.now - @@cached_at > 120)
     @@data
   end
 
