@@ -2,7 +2,9 @@ var SearchForm = React.createClass({
     keywordSearch: function(e) {
         e.preventDefault();
         var term = React.findDOMNode(this.refs.term).value.trim();
-        this.props.onFetchStations({"term":term});
+        if (term !== undefined && term.length > 0) {
+            this.props.onFetchStations({"term":term});
+        }
     },
     render: function () {
         var status = this.props.active ? 'active' : '';
