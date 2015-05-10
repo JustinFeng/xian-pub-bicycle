@@ -39,11 +39,12 @@ $light: #ddd;
       border-top-right-radius: $radius;
       border-bottom-right-radius: $radius;
       font-size: inherit;
-      color: white;
+      color: $dark;
       margin-right: 1%;
+      background: white;
 
       &.active {
-        color: black;
+        color: blue;
       }
 
       &:focus {
@@ -64,7 +65,8 @@ $light: #ddd;
       border: 2px solid $dark;
       border-right: 1px solid $dark;
       font-size: inherit;
-      color: white;
+      color: $dark;
+      background: white;
 
       &.active {
         color: lawngreen;
@@ -88,8 +90,9 @@ $light: #ddd;
       border: 2px solid $dark;
       border-left: 1px solid $dark;
       font-size: inherit;
-      color: white;
+      color: $dark;
       margin-right: 1%;
+      background: white;
 
       &.active {
         color: gold;
