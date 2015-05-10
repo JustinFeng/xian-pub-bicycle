@@ -44,7 +44,7 @@ $light: #ddd;
       background: white;
 
       &.active {
-        color: blue;
+        color: royalblue;
       }
 
       &:focus {
@@ -53,7 +53,7 @@ $light: #ddd;
 
       &:active {
         background: $light;
-        color: black;
+        color: royalblue;
       }
     }
 
@@ -69,7 +69,7 @@ $light: #ddd;
       background: white;
 
       &.active {
-        color: lawngreen;
+        color: forestgreen;
       }
 
       &:focus {
@@ -78,7 +78,7 @@ $light: #ddd;
 
       &:active {
         background: $light;
-        color: lawngreen;
+        color: forestgreen;
       }
     }
 
@@ -145,13 +145,14 @@ $light: #ddd;
           font-size: inherit;
           border: 0;
           background: none;
-          color: lawngreen;
+          color: forestgreen;
 
           a {
             display: block;
             padding: 45px 53px;
             color: inherit;
             text-decoration: none;
+            border-radius: 10px;
 
             &:hover {
               cursor: default;
@@ -168,6 +169,7 @@ $light: #ddd;
           border: 0;
           background: none;
           color: gold;
+          border-radius: 10px;
 
           &:focus {
             outline: none;
