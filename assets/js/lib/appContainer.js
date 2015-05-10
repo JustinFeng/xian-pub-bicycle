@@ -1,5 +1,6 @@
 var AppContainer = React.createClass({displayName: "AppContainer",
     fetchStations: function(query) {
+        this.setState({data: null});
         $.ajax({
             url: '/api?query=' + encodeURI(JSON.stringify(query)),
             dataType: 'json',

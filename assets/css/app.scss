@@ -110,6 +110,14 @@ $light: #ddd;
   }
 
   .stationList {
+    &.loading {
+      width: 100%;
+      margin: 150px auto;
+      text-align: center;
+      font-size: 80px;
+      color: $dark;
+    }
+
     .station {
       border-bottom: 1px solid $light;
       position: relative;
