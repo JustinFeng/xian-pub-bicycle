@@ -13,9 +13,6 @@ class DataRepository
 
   BAIDU_AK = 'OKYmQIaqUsXLGsTkpoDyBB9g'
 
-  @@data = nil
-  @@cached_at = Time.now
-
   def self.search_by_term term
     data.select { |station| station["location"].include?(term) || station["sitename"].include?(term) }
   end
@@ -43,18 +40,19 @@ class DataRepository
     data.select { |station| ids.include? station["siteid"] }
   end
 
+  def self.sync
+    p 'Fetching...'
+    response = HTTParty.post(WS_URL, body: SOAP_REQUEST_XML)
+    File.open('./data/data.json', 'w') do |f|
+      f.write(response.body.scan(/.*\<ns1:out\>(.*)\<\/ns1:out\>.*/)[0][0])
+    end
+  end
+
   private
 
   def self.data
-    fetch if (@@data.nil? || Time.now - @@cached_at > 120)
-    @@data
-  end
-
-  def self.fetch
-    p 'Fetching...'
-    response = HTTParty.post(WS_URL, body: SOAP_REQUEST_XML)
-    @@data  = JSON.parse(response.body.scan(/.*\<ns1:out\>(.*)\<\/ns1:out\>.*/)[0][0])
-    @@cached_at = Time.now
+    sync unless File.exists? './data/data.json'
+    JSON.parse(File.read('./data/data.json'))
   end
 
   def self.to_baidu_coordinate lat, lng

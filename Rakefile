@@ -23,3 +23,11 @@ namespace :assets do
     exec 'jsx -x jsx --no-cache-dir assets/js/jsx/ assets/js/lib/'
   end
 end
+
+require './lib/data_repository'
+namespace :data do
+  desc 'Sync bicycle station data'
+  task :sync do
+    DataRepository.sync
+  end
+end
