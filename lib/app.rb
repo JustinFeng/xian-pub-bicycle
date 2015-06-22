@@ -29,18 +29,18 @@ class App < Sinatra::Base
 
   get '/api' do
     begin
-      headers 'Access-Control-Allow-Origin' => "*"
+      headers 'Access-Control-Allow-Origin' => '*'
       query = JSON.parse(params[:query])
     rescue
       halt 400, "Bad query params: #{params[:query]}"
     end
 
-    if query["ids"]
-      DataRepository.search_by_ids(query["ids"]).to_json
-    elsif query["lat"] && query["lng"]
-      DataRepository.search_by_location(query["lat"], query["lng"], query["distance"] || 1000).to_json
-    elsif query["term"]
-      DataRepository.search_by_term(query["term"]).to_json
+    if query['ids']
+      DataRepository.search_by_ids(query['ids']).to_json
+    elsif query['lat'] && query['lng']
+      DataRepository.search_by_location(query['lat'], query['lng'], query['distance'] || 1000).to_json
+    elsif query['term']
+      DataRepository.search_by_term(query['term']).to_json
     else
       [].to_json
     end
