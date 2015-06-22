@@ -13,6 +13,8 @@ class DataRepository
 
   BAIDU_AK = 'OKYmQIaqUsXLGsTkpoDyBB9g'
 
+  DATA_FILE = './data.json'
+
   def self.search_by_term term
     data.select { |station| station["location"].include?(term) || station["sitename"].include?(term) }
   end
@@ -43,7 +45,7 @@ class DataRepository
   def self.sync
     p 'Fetching...'
     response = HTTParty.post(WS_URL, body: SOAP_REQUEST_XML)
-    File.open('./data/data.json', 'w') do |f|
+    File.open(DATA_FILE, 'w') do |f|
       f.write(response.body.scan(/.*\<ns1:out\>(.*)\<\/ns1:out\>.*/)[0][0])
     end
   end
@@ -51,8 +53,8 @@ class DataRepository
   private
 
   def self.data
-    sync unless File.exists? './data/data.json'
-    JSON.parse(File.read('./data/data.json'))
+    sync unless File.exists? DATA_FILE
+    JSON.parse(File.read(DATA_FILE))
   end
 
   def self.to_baidu_coordinate lat, lng
