@@ -1,6 +1,7 @@
 require 'httparty'
 require 'openssl'
 require 'geokit'
+require 'dalli'
 
 Geokit::default_units = :meters
 
@@ -13,7 +14,11 @@ class DataRepository
 
   BAIDU_AK = 'OKYmQIaqUsXLGsTkpoDyBB9g'
 
-  DATA_FILE = './data.json'
+  if ENV["MEMCACHEDCLOUD_SERVERS"]
+    MEMCACHED_CLIENT = Dalli::Client.new(ENV["MEMCACHEDCLOUD_SERVERS"].split(','), :username => ENV["MEMCACHEDCLOUD_USERNAME"], :password => ENV["MEMCACHEDCLOUD_PASSWORD"])
+  else
+    MEMCACHED_CLIENT = Dalli::Client.new('localhost:11211')
+  end
 
   def self.search_by_term term
     data.select { |station| station["location"].include?(term) || station["sitename"].include?(term) }
@@ -42,19 +47,18 @@ class DataRepository
     data.select { |station| ids.include? station["siteid"] }
   end
 
-  def self.sync
+  def self.cache
     p 'Fetching...'
     response = HTTParty.post(WS_URL, body: SOAP_REQUEST_XML)
-    File.open(DATA_FILE, 'w') do |f|
-      f.write(response.body.scan(/.*\<ns1:out\>(.*)\<\/ns1:out\>.*/)[0][0])
-    end
+    p 'Caching...'
+    MEMCACHED_CLIENT.set('data', response.body.scan(/.*\<ns1:out\>(.*)\<\/ns1:out\>.*/)[0][0])
   end
 
   private
 
   def self.data
-    sync unless File.exists? DATA_FILE
-    JSON.parse(File.read(DATA_FILE))
+    cache unless MEMCACHED_CLIENT.get('data')
+    JSON.parse(MEMCACHED_CLIENT.get('data'))
   end
 
   def self.to_baidu_coordinate lat, lng

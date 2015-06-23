@@ -26,8 +26,8 @@ end
 
 require './lib/data_repository'
 namespace :data do
-  desc 'Sync bicycle station data'
-  task :sync do
-    DataRepository.sync
+  desc 'Cache bicycle station data'
+  task :cache do
+    DataRepository.cache
   end
 end

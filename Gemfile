@@ -8,6 +8,7 @@ gem 'sass'
 gem 'httparty'
 gem 'rake'
 gem 'geokit'
+gem 'dalli'
 
 group :development, :test do
   gem 'byebug'
