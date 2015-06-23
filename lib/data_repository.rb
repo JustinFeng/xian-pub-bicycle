@@ -1,24 +1,12 @@
-require 'httparty'
-require 'openssl'
 require 'geokit'
-require 'dalli'
+require_relative 'cache'
 
 Geokit::default_units = :meters
 
 class DataRepository
-  WS_URL = 'http://www.xazxc.com/service/IBikeSitesService?wsdl/findBikeSites'
-
-  SOAP_REQUEST_XML = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:q0="http://ws.itcast.cn/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> <soapenv:Body> <q0:findBikeSites></q0:findBikeSites></soapenv:Body> </soapenv:Envelope>'
-
   BAIDU_GEO_API = 'http://api.map.baidu.com/geoconv/v1/'
 
   BAIDU_AK = 'OKYmQIaqUsXLGsTkpoDyBB9g'
-
-  if ENV["MEMCACHEDCLOUD_SERVERS"]
-    MEMCACHED_CLIENT = Dalli::Client.new(ENV["MEMCACHEDCLOUD_SERVERS"].split(','), :username => ENV["MEMCACHEDCLOUD_USERNAME"], :password => ENV["MEMCACHEDCLOUD_PASSWORD"])
-  else
-    MEMCACHED_CLIENT = Dalli::Client.new('localhost:11211')
-  end
 
   def self.search_by_term term
     data.select { |station| station["location"].include?(term) || station["sitename"].include?(term) }
@@ -47,18 +35,10 @@ class DataRepository
     data.select { |station| ids.include? station["siteid"] }
   end
 
-  def self.cache
-    p 'Fetching...'
-    response = HTTParty.post(WS_URL, body: SOAP_REQUEST_XML)
-    p 'Caching...'
-    MEMCACHED_CLIENT.set('data', response.body.scan(/.*\<ns1:out\>(.*)\<\/ns1:out\>.*/)[0][0])
-  end
-
   private
 
   def self.data
-    cache unless MEMCACHED_CLIENT.get('data')
-    JSON.parse(MEMCACHED_CLIENT.get('data'))
+    Cache.data
   end
 
   def self.to_baidu_coordinate lat, lng

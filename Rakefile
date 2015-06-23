@@ -24,10 +24,10 @@ namespace :assets do
   end
 end
 
-require './lib/data_repository'
+require './lib/cache'
 namespace :data do
   desc 'Cache bicycle station data'
   task :cache do
-    DataRepository.cache
+    Cache.cache
   end
 end
