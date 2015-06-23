@@ -1,5 +1,7 @@
 # xian-pub-bicycle
 
+[![Circle CI](https://circleci.com/gh/JustinFeng/xian-pub-bicycle.svg?style=shield)](https://circleci.com/gh/JustinFeng/xian-pub-bicycle)
+
 Xi'an Public Bicycle Data API
 
 ## API doc
