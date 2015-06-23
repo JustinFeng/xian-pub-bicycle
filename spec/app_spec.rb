@@ -1,3 +1,4 @@
+require_relative 'spec_helper'
 require './lib/app'
 
 describe App do
