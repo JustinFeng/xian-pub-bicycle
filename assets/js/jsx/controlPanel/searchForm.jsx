@@ -3,7 +3,7 @@ var SearchForm = React.createClass({
         e.preventDefault();
         var term = React.findDOMNode(this.refs.term).value.trim();
         if (term !== undefined && term.length > 0) {
-            this.props.onFetchStations({"term":term});
+            this.props.onFetchSites({"term":term});
         }
     },
     render: function () {

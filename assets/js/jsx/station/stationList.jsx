@@ -1,22 +1,22 @@
-var StationList = React.createClass({
+var SiteList = React.createClass({
     render: function () {
-        var stationList = [];
+        var siteList = [];
         var statusModifier = '';
 
         if(this.props.data !== null) {
-            stationList = this.props.data.map(function (station) {
+            siteList = this.props.data.map(function (site) {
                 return (
-                    <Station key={station.siteid} info={station}/>
+                    <Site key={site.siteid} info={site}/>
                 );
             });
         } else {
             statusModifier = 'icon-spin1 animate-spin loading';
         }
 
-        var classes = React.addons.classSet('stationList', statusModifier);
+        var classes = React.addons.classSet('siteList', statusModifier);
         return (
             <section className={classes}>
-                {stationList}
+                {siteList}
             </section>
         );
     }

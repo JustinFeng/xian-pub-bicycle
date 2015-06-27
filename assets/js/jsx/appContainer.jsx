@@ -1,5 +1,5 @@
 var AppContainer = React.createClass({
-    fetchStations: function(query) {
+    fetchSites: function(query) {
         this.setState({data: null});
         $.ajax({
             url: '/api?query=' + encodeURI(JSON.stringify(query)),
@@ -15,8 +15,8 @@ var AppContainer = React.createClass({
     render: function () {
         return (
             <div className="appContainer">
-                <ControlPanel onFetchStations={this.fetchStations} />
-                <StationList data={this.state.data}/>
+                <ControlPanel onFetchSites={this.fetchSites} />
+                <SiteList data={this.state.data}/>
             </div>
         );
     }

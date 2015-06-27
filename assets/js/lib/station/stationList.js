@@ -1,22 +1,22 @@
-var StationList = React.createClass({displayName: "StationList",
+var SiteList = React.createClass({displayName: "SiteList",
     render: function () {
-        var stationList = [];
+        var siteList = [];
         var statusModifier = '';
 
         if(this.props.data !== null) {
-            stationList = this.props.data.map(function (station) {
+            siteList = this.props.data.map(function (site) {
                 return (
-                    React.createElement(Station, {key: station.siteid, info: station})
+                    React.createElement(Site, {key: site.siteid, info: site})
                 );
             });
         } else {
             statusModifier = 'icon-spin1 animate-spin loading';
         }
 
-        var classes = React.addons.classSet('stationList', statusModifier);
+        var classes = React.addons.classSet('siteList', statusModifier);
         return (
             React.createElement("section", {className: classes}, 
-                stationList
+                siteList
             )
         );
     }

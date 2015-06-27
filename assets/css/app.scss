@@ -2,7 +2,7 @@ $icon-size: 20px;
 $font-size: 16px;
 $panel-height: 40px;
 $radius: 20px;
-$station-height: 110px;
+$site-height: 110px;
 $dark: #999;
 $light: #ddd;
 
@@ -109,7 +109,7 @@ $light: #ddd;
     }
   }
 
-  .stationList {
+  .siteList {
     &.loading {
       width: 100%;
       margin: 150px auto;
@@ -118,10 +118,10 @@ $light: #ddd;
       color: $dark;
     }
 
-    .station {
+    .site {
       border-bottom: 1px solid $light;
       position: relative;
-      height: $station-height;
+      height: $site-height;
 
       .info {
         display: inline-block;
@@ -197,7 +197,7 @@ $light: #ddd;
   $font-size: 32px;
   $panel-height: 80px;
   $radius: 40px;
-  $station-height: 180px;
+  $site-height: 180px;
 
   .appContainer {
     width: 100%;
@@ -229,9 +229,9 @@ $light: #ddd;
       }
     }
 
-    .stationList {
-      .station {
-        height: $station-height;
+    .siteList {
+      .site {
+        height: $site-height;
 
         .info {
           font-size: $font-size;

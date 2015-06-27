@@ -7,11 +7,11 @@ Xi'an Public Bicycle Data API
 ## API doc
 
 API is serving at http://xian-pub-bicycle.herokuapp.com/api?query=QUERY_JSON, it supports 
-3 ways to query public bicycle station information
+3 ways to query public bicycle site information
 
 ### Search by keyword
 
-Search with keyword, api will return station whose sitename or location contains the keyword.
+Search with keyword, api will return site whose sitename or location contains the keyword.
 
 **REQUEST:**
 

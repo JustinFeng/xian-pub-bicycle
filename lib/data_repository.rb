@@ -9,20 +9,20 @@ class DataRepository
   BAIDU_AK = 'OKYmQIaqUsXLGsTkpoDyBB9g'
 
   def self.search_by_term term
-    data.select { |station| station["location"].include?(term) || station["sitename"].include?(term) }
+    data.select { |site| site["location"].include?(term) || site["sitename"].include?(term) }
   end
 
   def self.search_by_location gps_lat, gps_lng, distance
     lat, lng = to_baidu_coordinate gps_lat, gps_lng
     user_loc = Geokit::LatLng.new(lat, lng)
-    data.reduce([]) { |nearby_set, station|
-      station_loc = Geokit::LatLng.new(station["latitude"], station["longitude"])
-      site_distance = user_loc.distance_to(station_loc)
+    data.reduce([]) { |nearby_set, site|
+      site_loc = Geokit::LatLng.new(site["latitude"], site["longitude"])
+      site_distance = user_loc.distance_to(site_loc)
 
       if site_distance <= distance
-        nearby_station = station.dup
-        nearby_station["distance"] = site_distance
-        nearby_set << nearby_station
+        nearby_site = site.dup
+        nearby_site["distance"] = site_distance
+        nearby_set << nearby_site
       end
 
       nearby_set
@@ -32,7 +32,7 @@ class DataRepository
   end
 
   def self.search_by_ids(ids)
-    data.select { |station| ids.include? station["siteid"] }
+    data.select { |site| ids.include? site["siteid"] }
   end
 
   private

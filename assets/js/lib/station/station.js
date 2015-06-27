@@ -1,4 +1,4 @@
-var Station = React.createClass({displayName: "Station",
+var Site = React.createClass({displayName: "Site",
     bookmark: function(e) {
         this.updateBookmarks();
         this.setState({isSaved: !this.state.isSaved});
@@ -35,7 +35,7 @@ var Station = React.createClass({displayName: "Station",
         var naviLink = "http://api.map.baidu.com/marker?location=" + info.latitude + "," + info.longitude +"&title=" + encodeURI(titleOnMap) + "&content=" + encodeURI(info.location) + "&output=html&src=xian-pub-bicycle";
 
         return (
-            React.createElement("article", {className: "station"}, 
+            React.createElement("article", {className: "site"}, 
                 React.createElement("section", {className: "info"}, 
                     React.createElement("h1", null, title), 
                     React.createElement("p", null, this.props.info.location)

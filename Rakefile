@@ -35,7 +35,7 @@ end
 
 require './lib/cache'
 namespace :data do
-  desc 'Cache bicycle station data'
+  desc 'Cache bicycle site data'
   task :cache do
     Cache.cache
   end

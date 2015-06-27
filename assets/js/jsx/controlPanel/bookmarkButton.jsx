@@ -1,6 +1,6 @@
 var BookmarkButton = React.createClass({
     idsSearch: function(e) {
-        this.props.onFetchStations({"ids": localStorage["bookmarks"]});
+        this.props.onFetchSites({"ids": localStorage["bookmarks"]});
     },
     render: function () {
         var status = this.props.active ? 'active' : '';
