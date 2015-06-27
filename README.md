@@ -11,7 +11,7 @@ API is serving at http://xian-pub-bicycle.herokuapp.com/api?query=QUERY_JSON, it
 
 ### Search by keyword
 
-Search with keyword, api will return site whose sitename or location contains the keyword.
+Search with keyword, api will return sites whose sitename or location contains the keyword.
 
 **REQUEST:**
 
@@ -36,7 +36,7 @@ GET http://xian-pub-bicycle.herokuapp.com/api?query={"term":ANY_STRING}
 
 ### Search by location
 
-Search with latitude, longitude and/or distance(meters), if distance is not provided, it will be set to 1000m
+Search with latitude, longitude and distance(meters), if distance is not provided, it will be set to 1000m
 as default.
 
 **REQUEST:**
