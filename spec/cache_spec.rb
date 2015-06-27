@@ -29,7 +29,7 @@ describe Cache do
       end
     end
 
-    context 'data has been cached' do
+    context 'data has not been cached' do
       before do
         allow_any_instance_of(Dalli::Client).to receive(:get).with('data').and_return(nil, '{"key": "value"}')
       end
