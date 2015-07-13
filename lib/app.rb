@@ -38,7 +38,8 @@ class App < Sinatra::Base
     if query['ids']
       DataRepository.search_by_ids(query['ids']).to_json
     elsif query['lat'] && query['lng']
-      DataRepository.search_by_location(query['lat'], query['lng'], query['distance'].to_f || 1000).to_json
+      distance = query['distance'] ? query['distance'].to_f : 1000
+      DataRepository.search_by_location(query['lat'], query['lng'], distance).to_json
     elsif query['term']
       DataRepository.search_by_term(query['term']).to_json
     else
