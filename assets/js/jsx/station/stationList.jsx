@@ -13,7 +13,7 @@ var SiteList = React.createClass({
             statusModifier = 'icon-spin1 animate-spin loading';
         }
 
-        var classes = React.addons.classSet('siteList', statusModifier);
+        var classes = 'siteList ' + statusModifier;
         return (
             <section className={classes}>
                 {siteList}

@@ -8,7 +8,7 @@ var SearchForm = React.createClass({displayName: "SearchForm",
     },
     render: function () {
         var status = this.props.active ? 'active' : '';
-        var classes = React.addons.classSet('icon-search', 'searchButton', status);
+        var classes = 'icon-search searchButton ' + status;
 
         return (
             React.createElement("form", {className: "searchForm", onSubmit: this.keywordSearch}, 

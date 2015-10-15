@@ -30,7 +30,7 @@ var Site = React.createClass({
         }
 
         var statusModifier = this.state.isSaved ? "icon-star-1" : "icon-star-empty";
-        var classes = React.addons.classSet('bookmark', statusModifier);
+        var classes = 'bookmark ' + statusModifier;
 
         var naviLink = "http://api.map.baidu.com/marker?location=" + info.latitude + "," + info.longitude +"&title=" + encodeURI(titleOnMap) + "&content=" + encodeURI(info.location) + "&output=html&src=xian-pub-bicycle";
 

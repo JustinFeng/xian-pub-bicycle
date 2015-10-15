@@ -4,7 +4,7 @@ var BookmarkButton = React.createClass({
     },
     render: function () {
         var status = this.props.active ? 'active' : '';
-        var classes = React.addons.classSet('icon-star-1', 'bookmarkButton', status);
+        var classes = 'icon-star-1 bookmarkButton ' + status;
 
         return (
             <button className={classes} onClick={this.idsSearch}/>
