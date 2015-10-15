@@ -23,8 +23,10 @@ class App < Sinatra::Base
                 '/css/*.css'
             ]
 
-    js_compression  :jsmin    # :jsmin | :yui | :closure | :uglify
+    js_compression  :uglify    # :jsmin | :yui | :closure | :uglify
     css_compression :sass   # :simple | :sass | :yui | :sqwish
+
+    expires 86400*365, :public
   }
 
   get '/api' do

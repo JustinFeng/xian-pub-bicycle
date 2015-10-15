@@ -1,9 +1,11 @@
+# source 'https://ruby.taobao.org'
 source 'https://rubygems.org'
 
-ruby '2.1.5'
+ruby '2.2.0'
 
 gem 'sinatra'
 gem 'sinatra-assetpack', :require => 'sinatra/assetpack'
+gem 'uglifier'
 gem 'sass'
 gem 'httparty'
 gem 'rake'
