@@ -25,9 +25,11 @@ class App < Sinatra::Base
 
     js_compression  :uglify    # :jsmin | :yui | :closure | :uglify
     css_compression :sass   # :simple | :sass | :yui | :sqwish
-
-    expires 86400*365, :public
   }
+
+  before do
+    expires 86400*30, :public, :must_revalidate
+  end
 
   get '/api' do
     begin
